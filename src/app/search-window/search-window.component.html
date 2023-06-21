@@ -1,0 +1,24 @@
+<div class="SearchWindowOptions">
+        <div class="SearchWindow" (click)="selectedMode(0)" [ngClass]="{'selected':selectedWindow===0}" >
+            {{myWindowsEnum[0]}}
+        </div>
+        <div class="SearchWindow" (click)="selectedMode(1)" [ngClass]="{'selected':selectedWindow===1}" >
+            {{myWindowsEnum[1]}}
+        </div>
+        <div class="SearchWindow" (click)="selectedMode(2)" [ngClass]="{'selected':selectedWindow===2}" >
+            {{myWindowsEnum[2]}}
+        </div>
+</div>
+<div class="SearchWindowResults">
+    <div class="SearchInput">        
+        <div class="input-icon-container">
+            <input type="text" name="" id="_input_" placeholder="Search by Country / City..." [(ngModel)]="searchTerm" />
+            <i class="material-icons">search</i>
+        </div>
+    </div>
+    <div class="SearchOptions">
+        <ng-container *ngFor="let country of myCountryList | filter:searchTerm:['country','capital']">
+            <app-country [countryData]="country" ></app-country>
+        </ng-container>
+    </div>
+</div>

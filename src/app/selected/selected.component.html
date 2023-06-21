@@ -1,0 +1,25 @@
+<div class="SelectedCountry" *ngIf="selectedCountry">
+        <p id="_c_c_">Chosen country</p>
+    <div class="CountryName">
+        <h1>{{selectedCountry.country}} </h1>
+        <p id="_capital_">Capital city: {{selectedCountry.capital}}</p>
+    </div>
+    <div class="Double">
+        <div id="_currency_">
+            Currency:
+            <h1>
+                <mat-icon> attach_money</mat-icon>{{selectedCountry.currency}}
+            </h1>
+        </div>
+        <div id="_level_">
+            Level:
+            <h1>
+                <mat-icon> bar_chart</mat-icon>{{selectedCountry.level}}
+            </h1>
+        </div>
+    </div>
+    <div class="Buttons">
+        <button>Start Booking</button>
+        <button id="_check_weather_" (click)="checkWeather()">Check the weather</button>
+    </div>
+</div>

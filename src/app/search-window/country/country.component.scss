@@ -1,0 +1,26 @@
+.CountryContainer{
+    width: 90%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    font-size: larger;
+    border-bottom: 1px solid grey;
+    margin:1% 4%;
+    padding: 1% 1%;
+    div{
+        width: 25%;
+        text-align: center;
+        
+        mat-icon{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform:translateY(70%)
+        }
+    }
+}
+.CountryContainer:hover{
+    border-bottom: 1px solid rgb(51, 68, 136);
+    color: rgb(51, 68, 136);
+    font-weight: bold;
+}
