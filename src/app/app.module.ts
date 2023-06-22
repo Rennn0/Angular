@@ -12,6 +12,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -56,6 +57,7 @@ import { ProgresscardComponent } from './progress-window/progresscard/progressca
     MatFormFieldModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

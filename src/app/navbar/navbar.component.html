@@ -1,4 +1,4 @@
-<nav class="MainNavbar" *ngIf="weatherData">
+<nav class="MainNavbar" *ngIf="weatherData; else loading">
   <div class="MainIcon">
     <img
       [src]="
@@ -29,3 +29,6 @@
     </div>
   </div>
 </nav>
+<ng-template #loading>
+  <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+</ng-template>
