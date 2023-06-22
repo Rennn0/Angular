@@ -1,29 +1,28 @@
 import { Component } from '@angular/core';
 import { countryList } from 'src/system/data/country.data';
 import { windows } from 'src/system/enums/window.enum';
-import { country } from 'src/system/interfaces/country.interface';
-
+import { DataShareService } from 'src/system/services/data-share.service';
 
 @Component({
   selector: 'app-search-window',
   templateUrl: './search-window.component.html',
-  styleUrls: ['./search-window.component.scss']
+  styleUrls: ['./search-window.component.scss'],
 })
 export class SearchWindowComponent {
+  public windowsKeys: string[] = Object.keys(windows).filter((key) =>
+    isNaN(Number(key))
+  );
+  selectedWindow: number = 0;
 
-  myWindowsEnum:windows[]=[windows.InUse,windows.InProgress,windows.Blocked]
+  myCountryList = countryList;
+  searchTerm: string = '';
 
-  selectedWindow:number=0;
+  constructor(private data: DataShareService) {}
 
-  myCountryList=countryList;
-  searchTerm:string="";
-  constructor(){}
+  ngOnInit(): void {}
 
-  ngOnInit():void{
+  selectedMode(index: number) {
+    this.selectedWindow = index;
+    this.data.setActiveWindowIndex(this.selectedWindow);
   }
-
-  selectedMode(index:number){
-    this.selectedWindow=index;
-  }
-
 }

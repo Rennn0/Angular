@@ -1,5 +1,5 @@
-export const enum windows {
-    InUse="In Use",
-    InProgress="In Progress",
-    Blocked="Blocked"
+export enum windows {
+  InUse = 'In Use',
+  InProgress = 'In Progress',
+  Booked = 'Booked',
 }

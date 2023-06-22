@@ -1,0 +1,63 @@
+<h1 class="mdt" mat-dialog-title>
+  Form {{ dialogData.country }} / {{ dialogData.city }}
+</h1>
+<form #myForm="ngForm">
+  <div mat-dialog-content class="mat-dialog-content">
+    <mat-form-field>
+      <mat-label>Visitors</mat-label>
+      <input
+        matInput
+        type="number"
+        min="1"
+        [(ngModel)]="myPopupInterface.visitorsN"
+        required
+        name="visitors"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="datepicker"
+        [min]="minDate"
+        [max]="maxDate"
+        [(ngModel)]="myPopupInterface.date"
+        required
+        name="date"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="datepicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Time</mat-label>
+      <mat-select [(ngModel)]="myPopupInterface.time" required name="time">
+        <mat-option *ngFor="let time of availableTimes" [value]="time"
+          >{{ time }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <section>
+      <mat-label>Need Guide</mat-label>
+      <mat-checkbox
+        [(ngModel)]="myPopupInterface.guide"
+        name="guide"
+      ></mat-checkbox>
+    </section>
+  </div>
+  <div mat-dialog-actions class="Buttons">
+    <button mat-raised-button color="basic" (click)="onNoClick()">
+      No Thanks
+    </button>
+    <button
+      mat-raised-button
+      color="basic"
+      (click)="onYesClick()"
+      [disabled]="!myForm.valid"
+    >
+      OK
+    </button>
+  </div>
+</form>

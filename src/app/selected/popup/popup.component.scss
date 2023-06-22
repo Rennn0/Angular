@@ -1,0 +1,29 @@
+h1 {
+  text-align: center;
+  &.mdt {
+    font-size: small;
+    color: grey;
+  }
+}
+
+.mat-dialog-content {
+  width: 40vh;
+  height: 45vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  mat-form-field {
+    width: 90%;
+    margin: 2% 0;
+  }
+}
+
+.Buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+
+  & button {
+    width: 40%;
+  }
+}

@@ -1,24 +1,44 @@
 <div class="SearchWindowOptions">
-        <div class="SearchWindow" (click)="selectedMode(0)" [ngClass]="{'selected':selectedWindow===0}" >
-            {{myWindowsEnum[0]}}
-        </div>
-        <div class="SearchWindow" (click)="selectedMode(1)" [ngClass]="{'selected':selectedWindow===1}" >
-            {{myWindowsEnum[1]}}
-        </div>
-        <div class="SearchWindow" (click)="selectedMode(2)" [ngClass]="{'selected':selectedWindow===2}" >
-            {{myWindowsEnum[2]}}
-        </div>
+  <ng-container *ngFor="let elem of windowsKeys; let i = index">
+    <div
+      class="SearchWindow"
+      (click)="selectedMode(i)"
+      [ngClass]="{ selected: selectedWindow === i }"
+    >
+      {{ elem }}
+    </div>
+  </ng-container>
 </div>
-<div class="SearchWindowResults">
-    <div class="SearchInput">        
-        <div class="input-icon-container">
-            <input type="text" name="" id="_input_" placeholder="Search by Country / City..." [(ngModel)]="searchTerm" />
-            <i class="material-icons">search</i>
-        </div>
+<ng-container [ngSwitch]="selectedWindow">
+  <div class="SearchWindowResults" *ngSwitchCase="0">
+    <div class="SearchInput">
+      <div class="input-icon-container">
+        <input
+          type="text"
+          name=""
+          id="_input_"
+          placeholder="Search by Country / City..."
+          [(ngModel)]="searchTerm"
+        />
+        <i class="material-icons">search</i>
+      </div>
     </div>
     <div class="SearchOptions">
-        <ng-container *ngFor="let country of myCountryList | filter:searchTerm:['country','capital']">
-            <app-country [countryData]="country" ></app-country>
-        </ng-container>
+      <ng-container
+        *ngFor="
+          let country of myCountryList
+            | filter : searchTerm : ['country', 'capital']
+        "
+      >
+        <app-country [countryData]="country"></app-country>
+      </ng-container>
     </div>
-</div>
+  </div>
+  <div class="ProgressWindow" *ngSwitchCase="1">
+    <app-progress-window></app-progress-window>
+  </div>
+
+  <div class="BookedWindow" *ngSwitchCase="2">
+    <app-blocked-window></app-blocked-window>
+  </div>
+</ng-container>

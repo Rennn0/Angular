@@ -1,6 +1,6 @@
 import { Component, EventEmitter } from '@angular/core';
 import { country } from 'src/system/interfaces/country.interface';
-import { Input,Output } from '@angular/core';
+import { Input} from '@angular/core';
 import { DataShareService } from 'src/system/services/data-share.service';
 
 

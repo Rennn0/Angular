@@ -1,1 +1,5 @@
-<p>progress-window works!</p>
+<div *ngFor="let item of myProgressData">
+  <div *ngFor="let value of item | keyvalue">
+    {{ value.value }}
+  </div>
+</div>
