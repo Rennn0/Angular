@@ -7,8 +7,8 @@
     <div class="LeftWindow">
       <app-search-window></app-search-window>
     </div>
-    <div class="RightWindow" *ngIf="activeWindow === 0">
-      <app-selected></app-selected>
+    <div class="RightWindow">
+      <app-selected *ngIf="activeWindow === 0"></app-selected>
     </div>
   </div>
 </div>

@@ -1,5 +1,4 @@
-<div *ngFor="let item of myProgressData">
-  <div *ngFor="let value of item | keyvalue">
-    {{ value.value }}
-  </div>
-</div>
+<app-progresscard
+  *ngFor="let item of myProgressData"
+  [cardData]="item"
+></app-progresscard>

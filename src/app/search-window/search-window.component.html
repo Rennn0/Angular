@@ -5,6 +5,12 @@
       (click)="selectedMode(i)"
       [ngClass]="{ selected: selectedWindow === i }"
     >
+      <div
+        *ngIf="elem === 'InProgress' && inProgressDataCount > 0"
+        id="_count_"
+      >
+        {{ inProgressDataCount }}
+      </div>
       {{ elem }}
     </div>
   </ng-container>

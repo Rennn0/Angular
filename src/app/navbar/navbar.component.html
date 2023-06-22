@@ -1,7 +1,13 @@
-<nav  class="MainNavbar" *ngIf="weatherData">
+<nav class="MainNavbar" *ngIf="weatherData">
   <div class="MainIcon">
-    <img [src]="'https://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'" >
-    <h1>{{weatherData.name}}<mat-icon> place</mat-icon></h1>
+    <img
+      [src]="
+        'https://openweathermap.org/img/wn/' +
+        weatherData.weather[0].icon +
+        '@2x.png'
+      "
+    />
+    <h1>{{ weatherData.name }}<mat-icon> place</mat-icon></h1>
   </div>
 
   <div class="MainTriplet">
@@ -10,17 +16,16 @@
     </div>
     <div id="_temp_">
       <div id="_temp__1">
-        <mat-icon>wb_sunny</mat-icon>{{weatherData.main.temp}}°C
-      </div>  
-      <div id="_temp__2">
-        <div id="_temp__2_1">Max: {{weatherData.main.temp_max}}°C
-        </div>
-        <div id="_temp__2_2">Min: {{weatherData.main.temp_min}}°C</div>
+        <mat-icon>wb_sunny</mat-icon>{{ weatherData.main.temp }}°C
       </div>
-    </div> 
+      <div id="_temp__2">
+        <div id="_temp__2_1">Max: {{ weatherData.main.temp_max }}°C</div>
+        <div id="_temp__2_2">Min: {{ weatherData.main.temp_min }}°C</div>
+      </div>
+    </div>
     <div id="_wind_">
-      <mat-icon>waves</mat-icon> {{weatherData.wind.deg}} / {{weatherData.wind.speed}}
+      <mat-icon>waves</mat-icon> {{ weatherData.wind.deg }} /
+      {{ weatherData.wind.speed }}
     </div>
   </div>
 </nav>
-  

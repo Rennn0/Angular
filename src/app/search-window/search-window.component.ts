@@ -13,13 +13,15 @@ export class SearchWindowComponent {
     isNaN(Number(key))
   );
   selectedWindow: number = 0;
-
+  inProgressDataCount: number = 0;
   myCountryList = countryList;
   searchTerm: string = '';
 
-  constructor(private data: DataShareService) {}
-
-  ngOnInit(): void {}
+  constructor(private data: DataShareService) {
+    this.data.getInProgressCount().subscribe((count: number) => {
+      this.inProgressDataCount = count;
+    });
+  }
 
   selectedMode(index: number) {
     this.selectedWindow = index;

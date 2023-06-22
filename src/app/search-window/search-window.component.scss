@@ -33,6 +33,19 @@
   color: rgb(51, 68, 136);
   background-color: rgb(136, 136, 136);
   opacity: 0.5;
+  position: relative;
+}
+#_count_ {
+  width: 3vh;
+  height: 3vh;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: rgb(87, 134, 228);
+  color: rgb(221, 235, 23);
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 2%;
 }
 
 .selected {
@@ -79,10 +92,12 @@
 
 .ProgressWindow {
   width: 100%;
-  height: 100%;
+  height: 90%;
+  overflow-y: auto;
 }
 
 .BookedWindow {
   width: 100%;
-  height: 100%;
+  height: 90%;
+  overflow-y: auto;
 }

@@ -24,6 +24,7 @@ import { MainComponent } from './main/main.component';
 import { CountryComponent } from './search-window/country/country.component';
 import { FilterPipe } from 'src/system/pipes/filter.pipe';
 import { PopupComponent } from './selected/popup/popup.component';
+import { ProgresscardComponent } from './progress-window/progresscard/progresscard.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PopupComponent } from './selected/popup/popup.component';
     CountryComponent,
     FilterPipe,
     PopupComponent,
+    ProgresscardComponent,
   ],
   imports: [
     BrowserModule,

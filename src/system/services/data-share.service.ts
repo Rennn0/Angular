@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { country } from '../interfaces/country.interface';
 import { WeatherApiService } from './weather-api.service';
 import { popupField } from '../interfaces/popup.interface';
@@ -12,7 +12,10 @@ export class DataShareService {
   private weatherData$ = new BehaviorSubject<any>(null);
   private popupDialogData$ = new BehaviorSubject<popupField | null>(null);
   private activeWindowIndex$ = new BehaviorSubject<number>(0);
-  private inProgressData = new Array();
+  private inProgressData: Array<any> = [];
+  private inProgressDataCount$ = new BehaviorSubject<number>(
+    this.inProgressData.length
+  );
 
   constructor(private weatherApi: WeatherApiService) {}
   setSelectedCountry(country: country) {
@@ -37,6 +40,7 @@ export class DataShareService {
     this.popupDialogData$.next(data);
     if (this.popupDialogData$.value) {
       this.inProgressData.push(this.popupDialogData$.value);
+      this.inProgressDataCount$.next(this.inProgressData.length);
     }
   }
 
@@ -50,5 +54,9 @@ export class DataShareService {
 
   getActiveWindowIndex() {
     return this.activeWindowIndex$.asObservable();
+  }
+
+  getInProgressCount(): Observable<number> {
+    return this.inProgressDataCount$.asObservable();
   }
 }
