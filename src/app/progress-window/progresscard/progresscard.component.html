@@ -1,12 +1,16 @@
-<div class="Card">
+<div
+  class="Card"
+  *ngIf="cardData"
+  [ngClass]="{ selected: activeIndex === myIndex }"
+>
   <h1>
     {{ cardData.country }}/{{ cardData.capital }} ( {{ month }}/{{ day }} )
   </h1>
   <div>
-    <button mat-stroked-button color="warn">
+    <button mat-stroked-button color="warn" (click)="processDelete()">
       <mat-icon>delete</mat-icon>Delete
     </button>
-    <button mat-stroked-button color="primary">
+    <button mat-stroked-button color="primary" (click)="processPayment()">
       <mat-icon>payment</mat-icon>Pay
     </button>
   </div>

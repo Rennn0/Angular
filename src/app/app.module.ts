@@ -26,6 +26,8 @@ import { CountryComponent } from './search-window/country/country.component';
 import { FilterPipe } from 'src/system/pipes/filter.pipe';
 import { PopupComponent } from './selected/popup/popup.component';
 import { ProgresscardComponent } from './progress-window/progresscard/progresscard.component';
+import { PaymentComponent } from './progress-window/payment/payment.component';
+import { BookedComponent } from './blocked-window/booked/booked.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { ProgresscardComponent } from './progress-window/progresscard/progressca
     FilterPipe,
     PopupComponent,
     ProgresscardComponent,
+    PaymentComponent,
+    BookedComponent,
   ],
   imports: [
     BrowserModule,

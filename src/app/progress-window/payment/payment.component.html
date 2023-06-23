@@ -1,0 +1,25 @@
+<div class="PaymentCard" *ngIf="myPaymentData">
+  <p>Order Details:</p>
+  <h3>
+    Country _ <span> {{ myPaymentData.country }} </span>
+  </h3>
+  <h3>
+    City _ <span>{{ myPaymentData.capital }}</span>
+  </h3>
+  <h3>
+    Date _ <span>{{ date }}</span>
+  </h3>
+  <h3>
+    Time _ <span>{{ myPaymentData.time }}</span>
+  </h3>
+  <h3>
+    Visitors _ <span>{{ myPaymentData.visitorsN }}</span>
+  </h3>
+  <h3>
+    <span *ngIf="myPaymentData.guide">With Guide</span>
+    <span *ngIf="!myPaymentData.guide">Without Guide</span>
+  </h3>
+  <div class="creditCard">
+    <img src="../../../assets/creditCard.png" alt="creditCard" />
+  </div>
+</div>

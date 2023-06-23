@@ -1,4 +1,5 @@
 <app-progresscard
-  *ngFor="let item of myProgressData"
+  *ngFor="let item of myProgressData; let i = index"
   [cardData]="item"
+  [myIndex]="i + 1"
 ></app-progresscard>

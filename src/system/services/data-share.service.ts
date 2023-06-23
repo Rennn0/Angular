@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { country } from '../interfaces/country.interface';
 import { WeatherApiService } from './weather-api.service';
 import { popupField } from '../interfaces/popup.interface';
+import { ProgresscardComponent } from 'src/app/progress-window/progresscard/progresscard.component';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +17,23 @@ export class DataShareService {
   private inProgressDataCount$ = new BehaviorSubject<number>(
     this.inProgressData.length
   );
+  #selectedProgressCard = new BehaviorSubject<number | undefined>(undefined);
+  selectedProgressCard$ = this.#selectedProgressCard.asObservable();
+  #cardToPayment = new BehaviorSubject<any>(null);
 
   constructor(private weatherApi: WeatherApiService) {}
+
+  selectProgressCard(cardIndex: number) {
+    this.#selectedProgressCard.next(cardIndex);
+  }
+
+  setPaymentData(cardData: popupField) {
+    this.#cardToPayment.next(cardData);
+  }
+
+  getPaymentData() {
+    return this.#cardToPayment.asObservable();
+  }
   setSelectedCountry(country: country) {
     this.selectedCountry$.next(country);
   }

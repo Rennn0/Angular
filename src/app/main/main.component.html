@@ -1,7 +1,7 @@
 <title>Main</title>
 <div class="MainContainer">
   <div class="NavbarContainer">
-    <app-navbar></app-navbar>
+    <!-- <app-navbar></app-navbar> -->
   </div>
   <div class="WindowContainer">
     <div class="LeftWindow">
@@ -9,6 +9,8 @@
     </div>
     <div class="RightWindow">
       <app-selected *ngIf="activeWindow === 0"></app-selected>
+      <app-payment *ngIf="activeWindow === 1"></app-payment>
+      <app-booked *ngIf="activeWindow === 2"></app-booked>
     </div>
   </div>
 </div>
