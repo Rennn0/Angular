@@ -1,4 +1,4 @@
-<mat-card class="PaymentCard" *ngIf="myPaymentData">
+<mat-card class="PaymentCard" *ngIf="renderCondition">
   <mat-card-title>--Order Details--</mat-card-title>
   <mat-card-header
     >{{ myPaymentData.country }} / {{ myPaymentData.capital }}</mat-card-header
@@ -10,6 +10,11 @@
   <mat-card-content *ngIf="!myPaymentData.guide"
     >Without Guide</mat-card-content
   >
+
+  <mat-card-content id="line"
+    >Total cost _ {{ myPaymentData.visitorsN * 3.14 }} $
+  </mat-card-content>
+
   <div class="creditCard">
     <img src="../../../assets/creditCard.png" alt="creditCard" />
     <form [formGroup]="creditCardForm" (ngSubmit)="onSubmit()">
@@ -58,7 +63,11 @@
           >Invalid CVC</mat-error
         >
       </mat-form-field>
-      <button mat-stroked-button [disabled]="creditCardForm.invalid">
+      <button
+        mat-stroked-button
+        [disabled]="creditCardForm.invalid"
+        (click)="processPayment(input1.value, input2.value, input3.value)"
+      >
         Proceed Payment
       </button>
     </form>

@@ -32,7 +32,11 @@ export class ProgresscardComponent {
   processPayment() {
     this.data.setPaymentData(this.cardData);
     this.data.selectProgressCard(this.myIndex);
+    this.data.setRenderConditino(true);
   }
 
-  processDelete() {}
+  processDelete() {
+    this.data.setRenderConditino(false);
+    this.data.removeProgresData(this.cardData);
+  }
 }

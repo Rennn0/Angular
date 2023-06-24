@@ -1,7 +1,7 @@
 import { Directive, HostListener, Input, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { popupField } from 'src/system/interfaces/popup.interface';
+import { finalData, popupField } from 'src/system/interfaces/popup.interface';
 import { DataShareService } from 'src/system/services/data-share.service';
 
 @Component({
@@ -11,9 +11,11 @@ import { DataShareService } from 'src/system/services/data-share.service';
 })
 export class PaymentComponent {
   myPaymentData!: popupField;
+  finalData!: finalData;
   date!: string;
   #dataSubscription: Subscription;
   creditCardForm!: FormGroup;
+  renderCondition: boolean = false;
 
   constructor(private data: DataShareService, private fb: FormBuilder) {
     this.#dataSubscription = this.data.getPaymentData().subscribe((data) => {
@@ -21,6 +23,10 @@ export class PaymentComponent {
         this.myPaymentData = data;
         this.date = this.formatDate(data.date);
       }
+    });
+
+    this.data.getRenderCondition$().subscribe((c) => {
+      this.renderCondition = c;
     });
 
     this.creditCardForm = this.fb.group({
@@ -41,6 +47,16 @@ export class PaymentComponent {
         [Validators.required, Validators.minLength(3), Validators.maxLength(3)],
       ],
     });
+  }
+
+  processPayment(i1: string, i2: string, i3: string) {
+    this.finalData = {
+      ...this.myPaymentData,
+      cardNum: Number(i1),
+      mmyy: i2,
+      cvc: Number(i3),
+    };
+    console.log(this.finalData);
   }
 
   corrector(event: KeyboardEvent, field: any) {

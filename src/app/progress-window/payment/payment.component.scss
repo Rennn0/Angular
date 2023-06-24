@@ -16,9 +16,13 @@
     font-weight: bold;
     font-size: large;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
 
+  #line {
+    border-top: 1px solid black;
+    padding-top: 6px;
+  }
   mat-card-content {
     margin: 10px;
     font-weight: bold;
@@ -42,7 +46,7 @@
       }
       #mff3,
       #mff2 {
-        width: 37%;
+        width: 43%;
       }
     }
     img {

@@ -9,10 +9,11 @@ import { DataShareService } from 'src/system/services/data-share.service';
 export class ProgressWindowComponent {
   myProgressData: any;
   selectedCard!: number;
-  constructor(private data: DataShareService) {}
 
-  ngOnInit() {
-    this.myProgressData = this.data.getInProgressData();
+  constructor(private data: DataShareService) {
+    this.data.getInProgressData().subscribe((data) => {
+      this.myProgressData = data;
+    });
   }
 
   selectCard(index: number) {

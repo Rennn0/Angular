@@ -6,3 +6,9 @@ export interface popupField {
   time: string;
   guide: boolean;
 }
+
+export interface finalData extends popupField {
+  cardNum: number;
+  mmyy: string;
+  cvc: number;
+}

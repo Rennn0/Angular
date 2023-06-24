@@ -12,10 +12,11 @@ export class DataShareService {
   private weatherData$ = new BehaviorSubject<any>(null);
   private popupDialogData$ = new BehaviorSubject<popupField | null>(null);
   private activeWindowIndex$ = new BehaviorSubject<number>(0);
-  private inProgressData: Array<any> = [];
+  private inProgressData = new BehaviorSubject<Array<any>>([]);
   private inProgressDataCount$ = new BehaviorSubject<number>(
-    this.inProgressData.length
+    this.inProgressData.value.length
   );
+  private renderCondition$ = new BehaviorSubject<boolean>(false);
   #selectedProgressCard = new BehaviorSubject<number | undefined>(undefined);
   selectedProgressCard$ = this.#selectedProgressCard.asObservable();
   #cardToPayment = new BehaviorSubject<any>(null);
@@ -23,6 +24,18 @@ export class DataShareService {
   selectedWindowIndex$ = this.#selectedWindowIndex.asObservable();
 
   constructor(private weatherApi: WeatherApiService) {}
+
+  getRenderCondition$() {
+    return this.renderCondition$.asObservable();
+  }
+  setRenderConditino(condition: boolean) {
+    this.renderCondition$.next(condition);
+  }
+  removeProgresData(elem: any) {
+    const updated = this.inProgressData.value.filter((e) => e !== elem);
+    this.inProgressData.next(updated);
+    this.inProgressDataCount$.next(updated.length);
+  }
 
   setSelectedWindowIndex(index: number) {
     this.#selectedWindowIndex.next(index);
@@ -32,8 +45,12 @@ export class DataShareService {
     this.#selectedProgressCard.next(cardIndex);
   }
 
-  setPaymentData(cardData: popupField) {
-    this.#cardToPayment.next(cardData);
+  setPaymentData(cardData: popupField | null, clear: boolean = false) {
+    if (clear) {
+      this.#cardToPayment.next({});
+    } else {
+      this.#cardToPayment.next(cardData);
+    }
   }
 
   getPaymentData() {
@@ -60,13 +77,20 @@ export class DataShareService {
   setPopupDialogData(data: popupField) {
     this.popupDialogData$.next(data);
     if (this.popupDialogData$.value) {
-      this.inProgressData.push(this.popupDialogData$.value);
-      this.inProgressDataCount$.next(this.inProgressData.length);
+      this.inProgressData.next([
+        ...this.inProgressData.value,
+        this.popupDialogData$.value,
+      ]);
+      this.inProgressDataCount$.next(this.inProgressData.value.length);
     }
   }
 
-  getInProgressData() {
-    return this.inProgressData;
+  // getInProgressData() {
+  //   return this.inProgressData;
+  // }
+
+  getInProgressData(): Observable<any> {
+    return this.inProgressData.asObservable();
   }
 
   setActiveWindowIndex(index: number) {
