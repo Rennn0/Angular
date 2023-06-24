@@ -13,15 +13,6 @@ export class ProgresscardComponent {
   @Input() myIndex!: number;
   indexSub: Subscription;
   activeIndex!: number;
-
-  cardDat: popupField = {
-    country: 'Georgia',
-    capital: 'Tbilisi',
-    visitorsN: 10,
-    date: new Date(),
-    time: '15-18',
-    guide: false,
-  };
   day: number = 0;
   month: number = 0;
 

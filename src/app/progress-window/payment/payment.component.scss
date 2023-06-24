@@ -1,24 +1,53 @@
 .PaymentCard {
-  width: 60vh;
+  width: 50vh;
   height: 70vh;
   color: rgb(67, 67, 67);
   display: flex;
   flex-direction: column;
+  padding: 2%;
 
-  p {
-    font-weight: bold;
-  }
-  span {
+  mat-card-title {
     font-size: larger;
-    color: black;
+    margin: 5px 10px;
+    opacity: 0.5;
+  }
+
+  mat-card-header {
+    font-weight: bold;
+    font-size: large;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  mat-card-content {
+    margin: 10px;
+    font-weight: bold;
+    font-size: medium;
   }
 
   .creditCard {
     width: 100%;
-    height: 40%;
+    height: 50%;
+
     display: flex;
-    justify-content: flex-start;
+    padding: 20px;
+    form {
+      display: flex;
+      flex-direction: column;
+      button {
+        margin: 4% 2%;
+      }
+      #mff1 {
+        width: 65%;
+      }
+      #mff3,
+      #mff2 {
+        width: 37%;
+      }
+    }
     img {
+      display: flex;
+      justify-content: flex-start;
       width: 45%;
       height: 100%;
     }

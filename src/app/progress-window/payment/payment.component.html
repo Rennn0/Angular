@@ -1,56 +1,66 @@
-<div class="PaymentCard" *ngIf="myPaymentData">
-  <p>Order Details:</p>
-  <h3>
-    Country _ <span> {{ myPaymentData.country }} </span>
-  </h3>
-  <h3>
-    City _ <span>{{ myPaymentData.capital }}</span>
-  </h3>
-  <h3>
-    Date _ <span>{{ date }}</span>
-  </h3>
-  <h3>
-    Time _ <span>{{ myPaymentData.time }}</span>
-  </h3>
-  <h3>
-    Visitors _ <span>{{ myPaymentData.visitorsN }}</span>
-  </h3>
-  <h3>
-    <span *ngIf="myPaymentData.guide">With Guide</span>
-    <span *ngIf="!myPaymentData.guide">Without Guide</span>
-  </h3>
+<mat-card class="PaymentCard" *ngIf="myPaymentData">
+  <mat-card-title>--Order Details--</mat-card-title>
+  <mat-card-header
+    >{{ myPaymentData.country }} / {{ myPaymentData.capital }}</mat-card-header
+  >
+  <mat-card-content>Date _ {{ date }} </mat-card-content>
+  <mat-card-content>Time _ {{ myPaymentData.time }} </mat-card-content>
+  <mat-card-content>Visitors _ {{ myPaymentData.visitorsN }} </mat-card-content>
+  <mat-card-content *ngIf="myPaymentData.guide">With Guide</mat-card-content>
+  <mat-card-content *ngIf="!myPaymentData.guide"
+    >Without Guide</mat-card-content
+  >
   <div class="creditCard">
     <img src="../../../assets/creditCard.png" alt="creditCard" />
     <form [formGroup]="creditCardForm" (ngSubmit)="onSubmit()">
-      <input
-        type="text"
-        formControlName="cardNumber"
-        placeholder="Card number"
-        maxlength="11"
-        (keypress)="numberValidation($event)"
-        #input1
-        [autoTab]="input2"
-      />
-
-      <input
-        type="text"
-        formControlName="expDate"
-        placeholder="MM/YY"
-        maxlength="5"
-        (keypress)="numberValidation($event)"
-        (keydown)="corrector($event, input2)"
-        #input2
-        [autoTab]="input3"
-      />
-      <input
-        type="text"
-        formControlName="cvc"
-        placeholder="CVC"
-        maxlength="3"
-        (keypress)="numberValidation($event)"
-        #input3
-      />
-      <button type="submit">Submit</button>
+      <mat-form-field id="mff1">
+        <mat-label>Card</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="cardNumber"
+          maxlength="12"
+          (keypress)="numberValidation($event)"
+          #input1
+          [autoTab]="input2"
+        />
+        <mat-error *ngIf="creditCardForm.controls['cardNumber'].invalid"
+          >Invalid Card Number</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field id="mff2">
+        <mat-label>MM/YY</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="expDate"
+          maxlength="5"
+          (keypress)="numberValidation($event)"
+          (keydown)="corrector($event, input2)"
+          #input2
+          [autoTab]="input3"
+        />
+        <mat-error *ngIf="creditCardForm.controls['expDate'].invalid"
+          >Invalid date</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field id="mff3">
+        <mat-label>CVC</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="cvc"
+          maxlength="3"
+          (keypress)="numberValidation($event)"
+          #input3
+        />
+        <mat-error *ngIf="creditCardForm.controls['cvc'].invalid"
+          >Invalid CVC</mat-error
+        >
+      </mat-form-field>
+      <button mat-stroked-button [disabled]="creditCardForm.invalid">
+        Proceed Payment
+      </button>
     </form>
   </div>
-</div>
+</mat-card>

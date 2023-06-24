@@ -28,13 +28,13 @@ export class PaymentComponent {
         '',
         [
           Validators.required,
-          Validators.minLength(11),
-          Validators.maxLength(11),
+          Validators.minLength(12),
+          Validators.maxLength(12),
         ],
       ],
       expDate: [
         '',
-        [Validators.required, Validators.minLength(4), Validators.maxLength(4)],
+        [Validators.required, Validators.minLength(5), Validators.maxLength(5)],
       ],
       cvc: [
         '',
