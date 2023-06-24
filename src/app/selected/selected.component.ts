@@ -38,6 +38,8 @@ export class SelectedComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.data.setPopupDialogData(result);
+        this.data.setSelectedWindowIndex(1);
+        this.data.setActiveWindowIndex(1);
       }
     });
   }

@@ -35,7 +35,7 @@ export class ProgresscardComponent {
 
   ngOnInit() {
     this.day = this.cardData?.date.getDate();
-    this.month = this?.cardData?.date.getMonth() + 1;
+    this.month = this.cardData?.date.getMonth() + 1;
   }
 
   processPayment() {

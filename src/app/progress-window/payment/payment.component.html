@@ -21,5 +21,36 @@
   </h3>
   <div class="creditCard">
     <img src="../../../assets/creditCard.png" alt="creditCard" />
+    <form [formGroup]="creditCardForm" (ngSubmit)="onSubmit()">
+      <input
+        type="text"
+        formControlName="cardNumber"
+        placeholder="Card number"
+        maxlength="11"
+        (keypress)="numberValidation($event)"
+        #input1
+        [autoTab]="input2"
+      />
+
+      <input
+        type="text"
+        formControlName="expDate"
+        placeholder="MM/YY"
+        maxlength="5"
+        (keypress)="numberValidation($event)"
+        (keydown)="corrector($event, input2)"
+        #input2
+        [autoTab]="input3"
+      />
+      <input
+        type="text"
+        formControlName="cvc"
+        placeholder="CVC"
+        maxlength="3"
+        (keypress)="numberValidation($event)"
+        #input3
+      />
+      <button type="submit">Submit</button>
+    </form>
   </div>
 </div>

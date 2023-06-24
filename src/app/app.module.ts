@@ -28,6 +28,7 @@ import { PopupComponent } from './selected/popup/popup.component';
 import { ProgresscardComponent } from './progress-window/progresscard/progresscard.component';
 import { PaymentComponent } from './progress-window/payment/payment.component';
 import { BookedComponent } from './blocked-window/booked/booked.component';
+import { AutotabDirective } from './progress-window/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { BookedComponent } from './blocked-window/booked/booked.component';
     ProgresscardComponent,
     PaymentComponent,
     BookedComponent,
+    AutotabDirective,
   ],
   imports: [
     BrowserModule,

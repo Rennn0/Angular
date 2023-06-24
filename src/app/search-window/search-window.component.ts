@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { countryList } from 'src/system/data/country.data';
 import { windows } from 'src/system/enums/window.enum';
 import { DataShareService } from 'src/system/services/data-share.service';
@@ -13,6 +14,7 @@ export class SearchWindowComponent {
     isNaN(Number(key))
   );
   selectedWindow: number = 0;
+  selectedWindowIndex: Subscription;
   inProgressDataCount: number = 0;
   myCountryList = countryList;
   searchTerm: string = '';
@@ -21,10 +23,15 @@ export class SearchWindowComponent {
     this.data.getInProgressCount().subscribe((count: number) => {
       this.inProgressDataCount = count;
     });
+    this.selectedWindowIndex = this.data.selectedWindowIndex$.subscribe(
+      (index) => {
+        this.selectedWindow = index;
+      }
+    );
   }
 
   selectedMode(index: number) {
-    this.selectedWindow = index;
+    this.data.setSelectedWindowIndex(index);
     this.data.setActiveWindowIndex(this.selectedWindow);
   }
 }
