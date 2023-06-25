@@ -1,1 +1,19 @@
-<p>blocked-window works!</p>
+<mat-expansion-panel *ngFor="let obj of myBookedData">
+  <mat-expansion-panel-header>
+    <mat-panel-title> Booked trip </mat-panel-title>
+    <mat-panel-description>
+      {{ obj.country }} / {{ obj.capital }}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <ng-template matExpansionPanelContent="">
+    <p>Visitors _ {{ obj.visitorsN }}</p>
+    <p>Date _ {{ obj.date }}</p>
+    <p>Time _ {{ obj.time }}</p>
+    <p>{{ obj.guide ? "widht" : "without" }} Guide</p>
+    <h3>Payment Details :</h3>
+    <p>Card Number _ {{ obj.cardNum }}</p>
+    <p>Exp. date _ {{ obj.mmyy }}</p>
+    <p>CVC _ {{ obj.cvc }}</p>
+    <p>Total Cost _ {{ obj.visitorsN * 3.14 }}</p>
+  </ng-template>
+</mat-expansion-panel>

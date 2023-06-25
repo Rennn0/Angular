@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { popupField } from 'src/system/interfaces/popup.interface';
+import { DataShareService } from 'src/system/services/data-share.service';
 
 @Component({
   selector: 'app-popup',
@@ -21,7 +22,8 @@ export class PopupComponent {
   maxDate: Date;
   constructor(
     public dialogRef: MatDialogRef<PopupComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData: any
+    @Inject(MAT_DIALOG_DATA) public dialogData: any,
+    private data: DataShareService
   ) {
     this.minDate = new Date();
     this.minDate.setDate(this.minDate.getDate() + 1);
@@ -31,6 +33,7 @@ export class PopupComponent {
 
   onYesClick(): void {
     this.dialogRef.close(this.myPopupInterface);
+    this.data.renderInProgress = true;
   }
   onNoClick(): void {
     this.dialogRef.close();

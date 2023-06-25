@@ -11,7 +11,10 @@
       >
         {{ inProgressDataCount }}
       </div>
-      {{ elem }}
+      {{ elem
+      }}<mat-icon *ngIf="elem === 'Booked' && booked"
+        >notification_important</mat-icon
+      >
     </div>
   </ng-container>
 </div>

@@ -56,14 +56,21 @@ export class PaymentComponent {
       mmyy: i2,
       cvc: Number(i3),
     };
-    console.log(this.finalData);
+    this.data.setBookedTripData(this.finalData);
+    this.data.removeProgresData(this.myPaymentData);
+    this.data.setRenderConditino(false);
+    this.data.setTrueRenderBooked();
   }
 
   corrector(event: KeyboardEvent, field: any) {
     if (field.value.length === 2) {
       field.value += '/';
     }
-    if (event.key === 'Backspace' || event.key === 'Delete') {
+    if (
+      event.key === 'Backspace' ||
+      event.key === 'Delete' ||
+      event.key === ' '
+    ) {
       event.preventDefault();
     }
   }

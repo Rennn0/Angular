@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   padding: 2%;
-
+  box-sizing: border-box;
   mat-card-title {
     font-size: larger;
     margin: 5px 10px;
@@ -15,7 +15,7 @@
   mat-card-header {
     font-weight: bold;
     font-size: large;
-    margin: auto;
+    margin: 3% auto;
     margin-bottom: 5px;
   }
 
@@ -24,32 +24,40 @@
     padding-top: 6px;
   }
   mat-card-content {
-    margin: 10px;
+    // margin: 10px;
     font-weight: bold;
     font-size: medium;
   }
 
   .creditCard {
     width: 100%;
+    box-sizing: border-box;
     height: 50%;
-
     display: flex;
     padding: 20px;
+
     form {
       display: flex;
       flex-direction: column;
+      width: 90%;
+      height: 100%;
+      margin-top: 5%;
       button {
-        margin: 4% 2%;
+        width: 80%;
+        height: 15%;
       }
       #mff1 {
         width: 65%;
+        height: 70px;
       }
       #mff3,
       #mff2 {
         width: 43%;
+        height: 70px;
       }
     }
     img {
+      margin-top: 5%;
       display: flex;
       justify-content: flex-start;
       width: 45%;

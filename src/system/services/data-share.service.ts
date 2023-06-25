@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { country } from '../interfaces/country.interface';
 import { WeatherApiService } from './weather-api.service';
-import { popupField } from '../interfaces/popup.interface';
+import { finalData, popupField } from '../interfaces/popup.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -17,14 +17,33 @@ export class DataShareService {
     this.inProgressData.value.length
   );
   private renderCondition$ = new BehaviorSubject<boolean>(false);
+  private bookedTripData = new BehaviorSubject<Array<finalData>>([]);
+
   #selectedProgressCard = new BehaviorSubject<number | undefined>(undefined);
   selectedProgressCard$ = this.#selectedProgressCard.asObservable();
   #cardToPayment = new BehaviorSubject<any>(null);
   #selectedWindowIndex = new BehaviorSubject<number>(0);
   selectedWindowIndex$ = this.#selectedWindowIndex.asObservable();
 
+  public renderInProgress = false;
+  private renderBooked = new BehaviorSubject<boolean>(false);
+
   constructor(private weatherApi: WeatherApiService) {}
 
+  getRenderBooked() {
+    return this.renderBooked.asObservable();
+  }
+
+  setTrueRenderBooked() {
+    this.renderBooked.next(true);
+  }
+  getBookedTripData() {
+    return this.bookedTripData.asObservable();
+  }
+
+  setBookedTripData(obj: finalData) {
+    this.bookedTripData.next([...this.bookedTripData.value, obj]);
+  }
   getRenderCondition$() {
     return this.renderCondition$.asObservable();
   }

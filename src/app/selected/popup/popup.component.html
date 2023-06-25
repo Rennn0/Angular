@@ -51,8 +51,13 @@
     <button mat-raised-button color="basic" (click)="onNoClick()">
       No Thanks
     </button>
-    <button mat-raised-button color="basic" (click)="onYesClick()">OK</button>
+    <button
+      mat-raised-button
+      color="basic"
+      (click)="onYesClick()"
+      [disabled]="!myForm.valid"
+    >
+      OK
+    </button>
   </div>
 </form>
-
-<!-- [disabled]="!myForm.valid"  -->

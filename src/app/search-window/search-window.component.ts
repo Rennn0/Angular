@@ -18,6 +18,7 @@ export class SearchWindowComponent {
   inProgressDataCount: number = 0;
   myCountryList = countryList;
   searchTerm: string = '';
+  booked: boolean = false;
 
   constructor(private data: DataShareService) {
     this.data.getInProgressCount().subscribe((count: number) => {
@@ -28,9 +29,31 @@ export class SearchWindowComponent {
         this.selectedWindow = index;
       }
     );
+    this.data.getRenderBooked().subscribe((c: boolean) => {
+      this.booked = c;
+    });
   }
 
   selectedMode(index: number) {
+    if (index === 1) {
+      if (this.data.renderInProgress) {
+        this.data.setSelectedWindowIndex(index);
+        this.data.setActiveWindowIndex(this.selectedWindow);
+        return;
+      } else {
+        return;
+      }
+    }
+
+    if (index === 2) {
+      if (this.booked) {
+        this.data.setSelectedWindowIndex(index);
+        this.data.setActiveWindowIndex(this.selectedWindow);
+        return;
+      } else {
+        return;
+      }
+    }
     this.data.setSelectedWindowIndex(index);
     this.data.setActiveWindowIndex(this.selectedWindow);
   }
